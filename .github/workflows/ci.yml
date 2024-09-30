@@ -3,12 +3,13 @@ name: Run Tests & Coding Standards
 on: [push, pull_request]
 
 jobs:
-  build-test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
-
+      - uses: php-actions/composer@v6
+    
       - name: Check Coding Standards
         uses: php-actions/composer@v6
         with:
