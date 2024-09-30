@@ -1,0 +1,39 @@
+name: Run Tests & Coding Standards
+
+on: [push, pull_request]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Check Coding Standards
+        uses: php-actions/composer@v6
+        with:
+          command: check-code
+
+      - name: Unit Tests
+        uses: php-actions/composer@v6
+        with:
+          command: tests
+
+    #   - name: PHPUnit Tests
+    #     uses: php-actions/phpunit@master
+    #     with:
+    #       version: 11.3.6
+    #       bootstrap: vendor/autoload.php
+    #       configuration: tests/phpunit.xml
+
+    #   - name: Install PHP_CodeSniffer
+    #     run: |
+    #       curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
+    #       php phpcs.phar --version
+  
+    #   - uses: tinovyatkin/action-php-codesniffer@v1
+    #     with:
+    #       files: "**.php" # you may customize glob as needed
+    #       phpcs_path: php phpcs.phar
+
+            
